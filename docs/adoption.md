@@ -23,8 +23,11 @@ updating the bundle to a version that actually supplies it.
 ## Codex
 
 After configure preview/apply, `.codex/config.toml` registers the shared Git
-marketplace at your reviewed starter SHA and enables the three separately named
-plugins for that project. Commit this project configuration after review;
+marketplace at your reviewed starter SHA and enables SP and gz-skills for that
+project. SP-BP remains pinned and
+explicitly disabled. The starter-owned front-door skill is placed in
+`.agents/skills/skills-first-start/`; confirm its discovery in a fresh session.
+Commit this project configuration after review;
 installation caches remain native-harness state.
 
 Open the project in Codex and review its trust decision. Inventory the existing
@@ -47,7 +50,6 @@ out, explicitly install its components through the native manager:
 
 ```bash
 codex plugin add superpowers@skills-first-starter
-codex plugin add superpowers-backplane@skills-first-starter
 codex plugin add gz-skills@skills-first-starter
 codex plugin list --json
 ```
@@ -62,9 +64,12 @@ record that limitation rather than claiming project-only activation.
 Start a fresh session. Confirm the actual discovered identities:
 
 - `superpowers:using-superpowers`
-- `superpowers-backplane:managing-superpowers-backlog`
-- `superpowers-backplane:managing-superpowers-handoffs`
+- `skills-first-start` (starter-owned project skill)
 - `gz-skills:gzs-router`
+
+Backplane installation and conformance checks below apply only to a future,
+explicitly authorized adoption after readiness review. They are not part of
+the default pair.
 
 Read Backplane's pinned [installation/compatibility reference](https://github.com/tvproductions/superpowers-backplane/blob/d0eeee829c491da02351e793544aa16ad96461bf/skills/managing-superpowers-backlog/references/installing-superpowers.md).
 Setup verifies GitHub CLI capabilities and actual native issue fields before
@@ -87,7 +92,6 @@ installations first. Then use Claude's project scope:
 ```text
 /plugin marketplace add tvproductions/skills-first-starter
 /plugin install superpowers@skills-first-starter --scope project
-/plugin install superpowers-backplane@skills-first-starter --scope project
 /plugin install gz-skills@skills-first-starter --scope project
 ```
 
@@ -95,7 +99,8 @@ The displayed catalog pins component source revisions. The command above obtains
 the current starter marketplace; for repeatable adoption, use a reviewed checkout
 at a recorded full SHA and `/plugin marketplace add /path/to/reviewed-starter`
 instead. Check the manager's current syntax before executing. Restart and verify
-actual discovery and Backplane's Claude contract. Marketplace syntax validation
+actual SP and gz-skills discovery. Backplane remains deferred.
+Marketplace syntax validation
 alone is not a completed installation or lifecycle proof.
 
 This starter does not automate Claude project settings or claim end-to-end

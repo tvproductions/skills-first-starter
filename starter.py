@@ -43,6 +43,8 @@ def validate_bundle() -> None:
     expected = {p["name"]: (p["repository"] + ".git", p["revision"]) for p in parts}
     if any(not SHA.fullmatch(p["revision"]) for p in parts):
         raise AdoptionError("every component needs an immutable full commit SHA")
+    if any(type(p.get("enabled_by_default")) is not bool for p in parts):
+        raise AdoptionError("every component needs an explicit boolean default activation")
     codex = json.loads((HERE / ".agents/plugins/marketplace.json").read_text())
     actual = {p["name"]: (p["source"]["url"], p["source"]["ref"]) for p in codex["plugins"]}
     if actual != expected or codex["name"] != MARKETPLACE:
@@ -88,9 +90,13 @@ def project_config(existing: str, ref: str) -> str:
     for key, value in data.get("plugins", {}).items():
         if key.split("@")[0] in {p["name"] for p in bundle()["components"]}:
             if key.endswith("@" + MARKETPLACE):
-                if value.get("enabled") is not True:
+                if value.get("enabled") is not next(
+                    p["enabled_by_default"]
+                    for p in bundle()["components"]
+                    if p["name"] == key.split("@")[0]
+                ):
                     raise AdoptionError(
-                        f"{key} is disabled; adoption must not override that choice"
+                        f"{key} conflicts with the default activation; reconcile explicitly"
                     )
             elif value.get("enabled") is not False:
                 raise AdoptionError(
@@ -98,7 +104,7 @@ def project_config(existing: str, ref: str) -> str:
                 )
     wanted = [("marketplaces", MARKETPLACE, {"source_type": "git", "source": ORIGIN, "ref": ref})]
     wanted += [
-        ("plugins", p["name"] + "@" + MARKETPLACE, {"enabled": True})
+        ("plugins", p["name"] + "@" + MARKETPLACE, {"enabled": p["enabled_by_default"]})
         for p in bundle()["components"]
     ]
     added = []
@@ -109,10 +115,7 @@ def project_config(existing: str, ref: str) -> str:
                 raise AdoptionError(f"conflicting [{group}.{name}] configuration; no files changed")
             continue
         lines = [f"[{group}.{json.dumps(name)}]"]
-        lines += [
-            f"{key} = " + ("true" if value is True else json.dumps(value))
-            for key, value in values.items()
-        ]
+        lines += [f"{key} = " + json.dumps(value) for key, value in values.items()]
         added.append("\n".join(lines))
     if not added:
         return existing
@@ -144,6 +147,10 @@ def configure(project: Path, ref: str, *, apply: bool = False) -> dict:
             raise AdoptionError(f"inspect existing discovery link {surface} before adoption")
         if folder.is_dir():
             for child in folder.iterdir():
+                if child.name == "skills-first-start" and surface != ".agents/skills":
+                    raise AdoptionError(
+                        f"existing starter front door at {surface}; reconcile discovery first"
+                    )
                 if child.name.startswith("gzs-") or child.name in (
                     "superpowers",
                     "superpowers-backplane",
@@ -160,6 +167,7 @@ def configure(project: Path, ref: str, *, apply: bool = False) -> dict:
             ".skills-first/bundle.lock.json",
             ".gz-skills/settings.json",
             "AGENTS.skills-first.md",
+            ".agents/skills/skills-first-start/SKILL.md",
             "AGENTS.md",
         )
     }
@@ -177,6 +185,9 @@ def configure(project: Path, ref: str, *, apply: bool = False) -> dict:
         ".codex/config.toml": project_config(old_config, ref),
         ".skills-first/bundle.lock.json": json.dumps(lock, indent=2) + "\n",
         "AGENTS.skills-first.md": fragment,
+        ".agents/skills/skills-first-start/SKILL.md": (
+            HERE / "skills/skills-first-start/SKILL.md"
+        ).read_text(),
     }
     if not paths["AGENTS.md"].exists():
         candidates["AGENTS.md"] = (
@@ -253,6 +264,63 @@ def status(project: Path) -> dict:
     }
 
 
+def backport(project: Path) -> dict:
+    """Assess structure from names only; never read records or move files."""
+    root = project.resolve(strict=True)
+    if not root.is_dir():
+        raise AdoptionError("project must be an existing directory")
+    entries = []
+    truncated = False
+    with os.scandir(root) as items:
+        for entry in items:
+            if len(entries) >= 200:
+                truncated = True
+                break
+            entries.append(
+                {
+                    "path": entry.name,
+                    "kind": "symlink"
+                    if entry.is_symlink()
+                    else "directory"
+                    if entry.is_dir(follow_symlinks=False)
+                    else "file",
+                }
+            )
+    names = {e["path"] for e in entries if e["kind"] != "symlink"}
+    targets = [
+        ("AGENTS.md", "Agent entry and links to project authorities"),
+        ("docs/project/", "Purpose, architecture, and decisions when useful"),
+        ("skills/", "Project-owned operational workflows; preserve native discovery"),
+        ("existing code layout", "Deterministic domain rules and supporting helpers"),
+        (
+            "existing data/evidence layout",
+            "Keep inputs, records, and products separate from skills",
+        ),
+        (
+            "existing planning authority",
+            "Keep current backlog and handoff practice while SP-BP is deferred",
+        ),
+    ]
+    return {
+        "status": "assessment",
+        "project": str(root),
+        "writes": [],
+        "inventory": sorted(entries, key=lambda e: e["path"]),
+        "inventory_truncated": truncated,
+        "preferred_structure": [{"target": t, "purpose": purpose} for t, purpose in targets],
+        "existing_entrypoints": sorted(
+            names & {"AGENTS.md", "README.md", "ROADMAP.md", "BACKLOG.md", "skills", "src", "docs"}
+        ),
+        "next": [
+            "Read governing instructions; map existing sources to useful targets with authority and disposition recorded.",
+            "Preserve existing app layout unless a specific move has demonstrated value; do not generate empty governance documents.",
+            "Implement authorized changes in small verified steps; update imports, links, discovery, and verification commands for each move.",
+        ],
+        "backplane": "deferred",
+        "assessment_limit": "Top-level names only; not a reviewed migration plan or code audit.",
+    }
+
+
 def source_revision() -> str:
     """Default only to this clean starter checkout, never a parent app's HEAD."""
 
@@ -291,6 +359,8 @@ def main(argv: list[str] | None = None) -> int:
         "status", help="inspect configuration without claiming runtime installation"
     )
     status_parser.add_argument("--project", type=Path, required=True)
+    backport_parser = sub.add_parser("backport", help="read-only preferred-structure assessment")
+    backport_parser.add_argument("--project", type=Path, required=True)
     sub.add_parser("validate", help="validate the three bundle pins and both native catalogs")
     args = parser.parse_args(argv)
     try:
@@ -298,6 +368,8 @@ def main(argv: list[str] | None = None) -> int:
             result = configure(
                 args.project, args.starter_ref or source_revision(), apply=args.apply
             )
+        elif args.command == "backport":
+            result = backport(args.project)
         elif args.command == "status":
             result = status(args.project)
         else:

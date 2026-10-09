@@ -24,3 +24,16 @@ remains a pre-release published commit. End-to-end Claude operation, OpenCode,
 combined-stack runtime conformance, update/rollback automation, and the FDAU pilot
 are not established by these local tests. CI provides the separate Python-version
 matrix; report its actual result rather than assuming these local checks prove it.
+
+## Backport and front-door update — October 9, 2026
+
+Nineteen unittest cases passed on Python 3.13.15, including deferred Backplane
+configuration, preservation of existing enabled Backplane state, front-door
+preservation/duplicate discovery, and bounded read-only structural assessment.
+Both starter skills passed Skill Creator validation; Ruff lint/format and bundle
+validation passed. The three upstream revisions and native catalogs are unchanged.
+
+No target application was restructured or plugin installed. The new front door
+is authored and staged by the helper; fresh-session native discovery is still
+unverified. The backport assessment is a starting inventory, not evidence that
+an application's structure or behavior has been audited.

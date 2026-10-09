@@ -6,12 +6,16 @@
 - Codex and Claude native marketplace catalogs.
 - Preview/apply/status Codex project configuration for empty and existing projects.
 - Preservation/conflict/symlink/duplicate/gzkit checks and unittest coverage.
-- Agent adoption entry and documented native loading/verification boundaries.
+- Agent adoption entry and a starter-owned front-door routing skill.
+- Default SP + gz-skills activation with SP-BP pinned but disabled.
+- Read-only structural assessment and guidance for incremental backporting.
+- Documented native loading/verification boundaries.
 
 ## Next adoption proofs
 
 1. Fresh Codex session: install from the published marketplace, verify project
-   enablement scope, exact loaded revisions, and all four entry skill identities.
+   enablement scope, exact loaded revisions, SP, gz-skills and the project front-door entry identities. Backplane
+   participation waits for its upstream readiness and explicit adoption.
 2. An authorized adopting repository pilot (FDAU is the primary candidate).
    Map existing configuration and adapters; do not replace project authorities.
 3. Claude project-scope installation, lifecycle, and combined-stack conformance

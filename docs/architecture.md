@@ -1,12 +1,14 @@
 # Architecture and ownership
 
-One bundle catalog composes three independently maintained plugins. Its two
+One bundle catalog tracks three independently maintained plugins. SP and
+gz-skills are enabled by default; Backplane is pinned but deferred. Its two
 native marketplace adapters refer to immutable upstream revisions; they do not
 contain authored copies of those skill trees.
 
 ```text
 Project AGENTS and domain authorities
-  -> SP (feature work) + SP-BP (backlog/handoff) + gz-skills (engineering)
+  -> starter front door -> SP (feature work) + gz-skills (engineering)
+  -> existing backlog/handoff practice; SP-BP deferred
   -> project-owned operational skills
   -> project-owned deterministic code and adapters
   -> versioned operational records and generated products
@@ -37,3 +39,8 @@ imported here.
 Project-specific constraints stay behind project seams. Public catalog and
 starter changes must not carry real operational records, credentials, machine
 paths, or sensitive source data. Examples and tests use invented fixtures only.
+
+The starter owns the small `skills-first-start` routing skill copied into an
+adopter's project discovery tree. Upstream skill trees are never copied. The
+read-only `backport` assessment supports an agent-led source mapping and verified
+refactoring; it does not relocate app files or impose heavy-profile governance.

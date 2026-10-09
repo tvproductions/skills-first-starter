@@ -1,7 +1,7 @@
 # Skills-first starter
 
-A reusable, project-scoped starting point for **Superpowers + Superpowers
-Backplane + gz-skills**, with room for each application's own operational skills
+A reusable, project-scoped starting point for **Superpowers + gz-skills**,
+with **Superpowers Backplane pinned but deferred**, with room for each application's own operational skills
 and supporting code. Built for work and personal projects under `tvproductions`.
 
 This repository is the bundle catalog, adoption tool, and guidance home. It is
@@ -23,7 +23,9 @@ python3 starter.py configure --project /path/to/your-project --apply
 ```
 
 The first configure command previews paths without writing. The second writes
-project Codex settings, a pinned bundle record, and an instructions fragment.
+project Codex settings, a pinned bundle record, an instructions fragment, and a starter-owned
+`skills-first-start` front-door skill in `.agents/skills`. SP and gz-skills are
+enabled; SP-BP is explicitly disabled.
 Existing `AGENTS.md` is preserved; new projects get an entry pointing to the
 fragment. Existing configuration is extended only when it is compatible.
 Conflicts, legacy duplicate skill discovery, symlinked destinations, and gzkit
@@ -46,6 +48,25 @@ rather than turning this scaffolding into runtime dependencies. Running the copi
 helper inside an adopting repo requires an explicit published `--starter-ref`;
 the default refuses to mistake an adopting repo commit for a starter revision.
 
+## Backporting an existing project
+
+```bash
+python3 starter.py backport --project /path/to/your-project
+```
+
+This read-only assessment suggests responsibilities to map onto existing material.
+It does not move code or read operational record contents. Use
+[backport guidance](docs/backport.md) to build a concrete mapping and apply useful
+changes in small verified steps. Preserve current backlog practice while SP-BP
+is deferred.
+
+The [skills-first-start entry](skills/skills-first-start/SKILL.md) routes across
+project operations, SP feature work, gz-skills engineering and adoption. It is
+copied as a starter-owned project skill, independently of the upstream plugins;
+fresh-session discovery remains to be verified. gz-skills already supplies
+`gzs-router` for its own catalog. Its candidate Matt Pocock adaptations are not
+shipped in this pinned release.
+
 ## The initial bundle
 
 The canonical pins are in [bundle.json](bundle.json). Both native catalogs use
@@ -54,7 +75,7 @@ those exact full commit SHAs, not moving branches.
 | Component | Initial baseline | Owns |
 |---|---|---|
 | [Superpowers](https://github.com/obra/superpowers) | v6.4.1 | Feature design, plans, implementation, review |
-| [Superpowers Backplane](https://github.com/tvproductions/superpowers-backplane) | Published pre-release commit | GitHub-backed backlog and handoff continuity |
+| [Superpowers Backplane](https://github.com/tvproductions/superpowers-backplane) | Deferred; disabled by default | GitHub-backed backlog and handoff continuity |
 | [gz-skills](https://github.com/tvproductions/gz-skills) | v0.5.0 | Portable engineering disciplines |
 | Your app | Project-owned | Operational workflows, domain rules, code, evidence |
 
@@ -69,7 +90,8 @@ setup behavior or select its lite/heavy profile.
 ## Current scope
 
 - Implemented: immutable bundle catalogs, Codex project configuration, preview,
-  idempotent adoption, conflict preservation, status, and automated tests.
+  idempotent adoption, conflict preservation, status, a front-door skill,
+  read-only backport assessment, and automated tests.
 - Claude Code: native bundle marketplace supplied; project install guidance
   documented. End-to-end installation is not verified by this starter yet.
 - OpenCode: deferred until Backplane's adapter and variant verification exist.

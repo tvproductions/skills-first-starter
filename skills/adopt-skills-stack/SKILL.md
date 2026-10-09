@@ -10,6 +10,11 @@ Read [the adoption guide](../../docs/adoption.md) for native host loading,
 compatibility checks, updates, and rollback. The helper is
 [starter.py](../../starter.py); use its CLI help for current options.
 
+For structural adoption in an existing project, read
+[backport guidance](../../docs/backport.md). Run the read-only assessment, map
+existing sources to proposed targets, and implement only useful, authorized
+changes with project verification. Configuration adoption does not move code.
+
 Establish the exact target project and a reviewed published starter revision.
 Inspect project instructions, existing plugins and skill discovery, and gzkit
 ownership. Keep app rules and existing user changes. Do not make a copy of an
@@ -27,8 +32,12 @@ the active host; preserve project scope and existing upstream versions. For a
 configuration-only request, stop after configuration and identify installation
 as pending. OpenCode is deferred until Backplane's upstream adapter is ready.
 
-Verify actual discovery in a fresh session and then Backplane's compatibility
-contract. Record exact sources and PASS/FAIL/UNKNOWN; status/configuration is not
+SP-BP is disabled by default. Preserve existing backlog/handoff practice; do not
+install or activate Backplane as part of ordinary adoption. Its future activation
+requires an explicit readiness review and configuration change.
+
+Verify actual SP and gz-skills discovery in a fresh session. If Backplane is later
+explicitly adopted, also verify its compatibility contract. Record exact sources and PASS/FAIL/UNKNOWN; status/configuration is not
 proof of loading. GitHub authentication, a real issue preflight, and any mutation
 scenario require the corresponding authorized environment. Do not operate on
 production issues just to test installation. Backplane's manifest version does
