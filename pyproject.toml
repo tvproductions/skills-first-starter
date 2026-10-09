@@ -2,13 +2,29 @@
 name = "skills-first-starter"
 version = "0.1.0"
 description = "Project-scoped SP + SP-BP + gz-skills adoption scaffold"
-requires-python = ">=3.11"
+requires-python = ">=3.14,<3.15"
 license = "MIT"
 dependencies = []
 
 [tool.ruff]
-target-version = "py311"
+target-version = "py314"
 line-length = 100
 
 [tool.ruff.lint]
 select = ["E4", "E7", "E9", "F", "I"]
+
+# Explicit execution group for on-demand complexity analysis.
+# These static development tools do not become application runtime dependencies.
+[dependency-groups]
+hygiene = ["complexipy==8.0.1", "lizard==1.24.1", "ruff==0.15.18"]
+
+# C901 is deliberately absent from the routine lint selection above.
+[tool.ruff.lint.mccabe]
+max-complexity = 20
+
+[tool.complexipy]
+paths = ["starter.py", "tests", "skills/python-engineering/scripts"]
+max-complexity-allowed = 15
+check-script = true
+no-ignore = true
+snapshot-ignore = true

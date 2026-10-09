@@ -16,8 +16,12 @@ its maintained catalog; do not recreate that catalog here. For feature design
 and implementation, use the installed SP `using-superpowers` entry and its
 workflow. For adoption or structural backporting, read the starter's
 `adopt-skills-stack` skill and `docs/backport.md` from a reviewed checkout.
-Backlog and handoff continuity stay with existing project practice while SP-BP
-is deferred.
+For Python engineering, read `skills/python-engineering/SKILL.md` from the
+reviewed starter checkout; it binds the runtime, idioms, routine tools and
+on-demand hygiene selections. This path is not relative to the copied adopter
+front door. Do not claim native discovery of that skill without evidence.
+Backlog and handoff continuity stay with existing project practice while SP-BP,
+an expected addition to the target stack, is deferred.
 
 This is a bootstrap pointer. Broader cross-stack routing in `gzs-router` is a
 future upstream integration; do not claim that the pinned router orchestrates
@@ -32,7 +36,7 @@ reviewed checkout when it is not exposed through native discovery.
 
 The maintained guidance lives at https://github.com/tvproductions/skills-first-starter.
 Use the revision recorded in `.skills-first/bundle.lock.json` when present.
-From that reviewed checkout, `python3 starter.py backport --project <root>` gives
+From that reviewed checkout, `uv run --python 3.14 starter.py backport --project <root>` gives
 a read-only starting assessment. Build a source-to-target mapping before changes;
 retain project authorities, domain rules, records, and working verification.
 

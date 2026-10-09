@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Preview or configure a project-scoped SP + SP-BP + gz-skills bundle.
 
-No dependencies beyond Python 3.11+. Native plugin managers own installation;
+No dependencies beyond Python 3.14. Native plugin managers own installation;
 this tool writes project configuration and never edits their global caches.
 """
 

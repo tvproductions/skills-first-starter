@@ -25,7 +25,7 @@ Inspect project instructions, existing plugins and skill discovery, and gzkit
 ownership. Keep app rules and existing user changes. Do not make a copy of an
 upstream skill tree or install the same skill through two discovery contracts.
 
-Run `python3 starter.py configure --project <root>` from this starter checkout.
+Run `uv run --python 3.14 starter.py configure --project <root>` from this starter checkout.
 Inspect its preview, then apply the already-authorized adoption with `--apply`.
 A conflict requires reconciliation of the specific source or file; do not remove
 other installations or use a force overwrite to make it pass. Existing AGENTS
@@ -37,7 +37,7 @@ the active host; preserve project scope and existing upstream versions. For a
 configuration-only request, stop after configuration and identify installation
 as pending. OpenCode is deferred until Backplane's upstream adapter is ready.
 
-SP-BP is disabled by default. Preserve existing backlog/handoff practice; do not
+SP-BP is an expected addition to the target stack and is disabled by default. Preserve existing backlog/handoff practice; do not
 install or activate Backplane as part of ordinary adoption. Its future activation
 requires an explicit readiness review and configuration change.
 

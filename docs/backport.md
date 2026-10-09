@@ -5,7 +5,7 @@ Treat this as a translation of useful responsibilities, not a wholesale rewrite
 or an imposed framework. FDAU is the primary precedent; its domain and numeric
 quality gates are not defaults for other projects.
 
-Run `python3 starter.py backport --project /path/to/project`. This assessment reads
+Run `uv run --python 3.14 starter.py backport --project /path/to/project`. This assessment reads
 only bounded top-level names, does not follow symlinks, and writes nothing. It
 suggests responsibilities, not a complete migration plan. The agent must read
 the target's governing instructions and relevant source before recommending moves.

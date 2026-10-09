@@ -1,7 +1,8 @@
 # Architecture and ownership
 
 One bundle catalog tracks three independently maintained plugins. SP and
-gz-skills are enabled by default; Backplane is pinned but deferred. Its two
+gz-skills are enabled by default; Backplane is an expected addition to the target
+stack, pinned but deferred pending readiness and explicit adoption. Its two
 native marketplace adapters refer to immutable upstream revisions; they do not
 contain authored copies of those skill trees.
 
@@ -44,3 +45,17 @@ The starter owns the small `skills-first-start` routing skill copied into an
 adopter's project discovery tree. Upstream skill trees are never copied. The
 read-only `backport` assessment supports an agent-led source mapping and verified
 refactoring; it does not relocate app files or impose heavy-profile governance.
+
+The starter owns the [Python engineering binding](../skills/python-engineering/SKILL.md):
+required runtime, idiom, tool, architecture and on-demand hygiene standards for
+its non-gzkit projects. gz-skills retains portable discipline ownership. The new
+skill can be read from the reviewed checkout; automatic copying/loading and
+shared-versus-local utility ownership have not been established. Existing-project
+adoption remains a preservation-first design task, not an automatic rewrite.
+
+Strong Python and tool preferences are starter-owned: Ruff + complexipy +
+Lizard, with periodic on-demand dependency freshness review. gz-skills and SP
+remain portable and agnostic; SP-BP should be agnostic too. Backplane is still
+expected and deferred. No upstream plugin policy or pin changes follow from
+this preference. Each adopting project binds the portable workflows to its
+reviewed tool choices and measurements.

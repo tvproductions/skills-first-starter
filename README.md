@@ -8,7 +8,8 @@ not another development lifecycle or an application framework. Existing projects
 can adopt it without replacing their architecture. **xplane-fdau is the primary
 reference implementation**, not a template whose domain rules should be copied.
 
-**SP-BP is not ready for normal adoption.** It remains cataloged and pinned for
+**SP-BP is an expected addition to the target SP + SP-BP + gz-skills stack,
+but is not ready for normal adoption.** It remains cataloged and pinned for
 future work, but the helper explicitly disables it and the default installation
 steps omit it. Keep your existing backlog and handoff process. This starter does
 not supply the missing Backplane implementation or certify the combined stack.
@@ -40,15 +41,15 @@ For starter development or a fresh-chat continuation, read
 
 ## Quick start: an existing or empty project
 
-Requires Python 3.11+, Git, and Codex with plugin support. GitHub CLI is useful
+Requires uv, Python 3.14, Git, and Codex with plugin support. GitHub CLI is useful
 for checking upstream releases; Backplane's GitHub workflows remain deferred. No Python dependencies are needed for this tool.
 
 ```bash
 gh repo clone tvproductions/skills-first-starter
 cd skills-first-starter
-python3 starter.py validate
-python3 starter.py configure --project /path/to/your-project
-python3 starter.py configure --project /path/to/your-project --apply
+uv run --python 3.14 starter.py validate
+uv run --python 3.14 starter.py configure --project /path/to/your-project
+uv run --python 3.14 starter.py configure --project /path/to/your-project --apply
 ```
 
 The first configure command previews paths without writing. The second writes
@@ -66,7 +67,7 @@ files does **not** install plugins, authenticate GitHub, or prove skill discover
 The native managers own their caches; upstream skills are never copied here.
 
 ```bash
-python3 starter.py status --project /path/to/your-project
+uv run --python 3.14 starter.py status --project /path/to/your-project
 ```
 
 For agent-guided adoption, read [the adoption skill](skills/adopt-skills-stack/SKILL.md).
@@ -80,7 +81,7 @@ the default refuses to mistake an adopting repo commit for a starter revision.
 ## Backporting an existing project
 
 ```bash
-python3 starter.py backport --project /path/to/your-project
+uv run --python 3.14 starter.py backport --project /path/to/your-project
 ```
 
 This read-only assessment suggests responsibilities to map onto existing material.
@@ -138,15 +139,29 @@ See [architecture](docs/architecture.md), [adoption](docs/adoption.md), and
 ## Checks
 
 ```bash
-python3 -m unittest discover -s tests -v
-python3 starter.py validate
-uvx ruff check .
-uvx ruff format --check .
+uv run --python 3.14 -m unittest discover -s tests -v
+uv run --python 3.14 starter.py validate
+uvx --python 3.14 ruff==0.15.18 check .
+uvx --python 3.14 ruff==0.15.18 format --check .
 ```
 
-The tool uses Python's standard library. A consuming application chooses its own
-runtime, quality tools, constraints, and public contracts. This starter does not
-impose FDAU's Python version or any numeric quality gate on other projects.
+The tool uses Python's standard library. Non-gzkit projects started from this
+starter carry its required Python engineering standards: uv-managed, pinned
+Python 3.14; Ruff check/format, ty, unittest and pre-commit; current idioms;
+stdlib-first code and explicit domain/adapter boundaries. See the reusable
+[Python engineering skill](skills/python-engineering/SKILL.md), including the
+XPPython3 version exception and on-demand hygiene selections: Ruff C901 plus
+complexipy and Lizard (retiring Xenon and Radon),
+Interrogate, Vulture, Bandit, Coverage.py, Cosmic Ray, deptry, pip-audit and
+Import Linter. These deeper checks stay outside hooks and CI.
+
+This records policy, not completed tool installation or enforcement. ty,
+pre-commit, expanded Ruff rules and Cosmic Ray's Python 3.14 compatibility proof
+remain outstanding in the starter. The configuration helper currently copies
+only the front-door skill; read the Python skill from a reviewed starter checkout
+when it is not discoverable. Existing-project adoption and shared/local utility
+ownership still require design decisions. Preserve app-specific public contracts
+and numeric thresholds; do not transplant another project's gates.
 
 ## Attribution and license
 
