@@ -1,0 +1,7 @@
+Skills-first starter references independently maintained projects:
+- Superpowers: https://github.com/obra/superpowers (Jesse Vincent / upstream owners)
+- Superpowers Backplane: https://github.com/tvproductions/superpowers-backplane
+- GovZero skills: https://github.com/tvproductions/gz-skills
+- Reference adopter: https://github.com/tvproductions/xplane-fdau
+Upstream licenses and release status remain authoritative. No upstream skills
+are copied into this repository. Original starter code and text use LICENSE.
