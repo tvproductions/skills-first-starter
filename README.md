@@ -1,18 +1,26 @@
 # Skills-first starter
 
 A reusable, project-scoped starting point for **Superpowers + gz-skills**,
-with **Superpowers Backplane pinned but deferred**, with room for each application's own operational skills
-and supporting code. Built for work and personal projects under `tvproductions`.
+with room for each application's own operational skills and supporting code. Built for work and personal projects under `tvproductions`.
 
 This repository is the bundle catalog, adoption tool, and guidance home. It is
 not another development lifecycle or an application framework. Existing projects
 can adopt it without replacing their architecture. **xplane-fdau is the primary
 reference implementation**, not a template whose domain rules should be copied.
 
+**SP-BP is not ready for normal adoption.** It remains cataloged and pinned for
+future work, but the helper explicitly disables it and the default installation
+steps omit it. Keep your existing backlog and handoff process. This starter does
+not supply the missing Backplane implementation or certify the combined stack.
+
+For current SP and gz-skills versions, follow
+[checking and adopting upstream updates](docs/adoption.md#getting-current-sp-and-gz-skills).
+The bundled pins are a reproducible baseline, not a promise to track latest.
+
 ## Quick start: an existing or empty project
 
-Requires Python 3.11+, Git, Codex with plugin support, and GitHub CLI for
-Backplane's GitHub workflows. No Python dependencies are needed for this tool.
+Requires Python 3.11+, Git, and Codex with plugin support. GitHub CLI is useful
+for checking upstream releases; Backplane's GitHub workflows remain deferred. No Python dependencies are needed for this tool.
 
 ```bash
 gh repo clone tvproductions/skills-first-starter
@@ -80,7 +88,10 @@ those exact full commit SHAs, not moving branches.
 | Your app | Project-owned | Operational workflows, domain rules, code, evidence |
 
 Superpowers v6.4.2 exists, but this starter initially selects v6.4.1 because
-Backplane's recorded compatibility proof uses that version. This is a reviewed
+Backplane's recorded compatibility proof used that version when the baseline
+was chosen. Backplane's deferral does not require keeping SP on that older
+version: review and adopt SP updates independently using the update guide.
+This is a reviewed
 starting set, **not a blanket compatibility certification**. Backplane has no
 published release; its remaining host acceptance and external pilot are tracked
 upstream. The pinned gz-skills release contains sixteen skills and predates the

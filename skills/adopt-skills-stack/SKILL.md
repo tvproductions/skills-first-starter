@@ -15,6 +15,11 @@ For structural adoption in an existing project, read
 existing sources to proposed targets, and implement only useful, authorized
 changes with project verification. Configuration adoption does not move code.
 
+Before choosing versions, use the adoption guide's “Getting current SP and
+gz-skills” procedure. Check latest published releases, distinguish development
+main from a release, and record reviewed full SHAs. The starter pins are a
+baseline, not an instruction to keep SP behind because Backplane is deferred.
+
 Establish the exact target project and a reviewed published starter revision.
 Inspect project instructions, existing plugins and skill discovery, and gzkit
 ownership. Keep app rules and existing user changes. Do not make a copy of an

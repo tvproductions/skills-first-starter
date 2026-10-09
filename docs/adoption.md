@@ -112,6 +112,65 @@ Do not generate a guessed adapter or claim readiness. Backplane's OpenCode
 implementation/acceptance is pending. The bundle can add an OpenCode adapter
 when those upstream contracts and negative cases have been demonstrated.
 
+## Getting current SP and gz-skills
+
+Check upstream at adoption time rather than assuming this template's baseline
+is newest. As checked October 9, 2026, the latest published releases are SP
+**v6.4.2** and gz-skills **v0.5.0**; the starter currently pins SP v6.4.1 and
+gz-skills v0.5.0. These observations expire as upstream releases change.
+
+From a shell with authenticated GitHub CLI, obtain each latest published release
+and resolve its tag to a full commit SHA:
+
+```bash
+sp_tag=$(gh api repos/obra/superpowers/releases/latest --jq .tag_name)
+sp_revision=$(gh api "repos/obra/superpowers/commits/$sp_tag" --jq .sha)
+gzs_tag=$(gh api repos/tvproductions/gz-skills/releases/latest --jq .tag_name)
+gzs_revision=$(gh api "repos/tvproductions/gz-skills/commits/$gzs_tag" --jq .sha)
+printf 'SP: %s %s\nGZS: %s %s\n' "$sp_tag" "$sp_revision" "$gzs_tag" "$gzs_revision"
+```
+
+Review the release notes and installation guidance at each exact revision:
+[SP releases](https://github.com/obra/superpowers/releases) and
+[gz-skills releases](https://github.com/tvproductions/gz-skills/releases).
+A failed query is not proof that a release is absent. Resolve network or access
+errors before choosing a version. Do not run upstream bootstrap scripts blindly.
+
+Latest published release and latest development commit are different choices.
+For an explicitly requested development version, resolve `commits/HEAD` through
+the same repository API, review its changes, and record its full SHA with release
+set to null and status identifying an unreleased development snapshot. Never put
+`main`, `HEAD`, or a moving tag in the catalog's revision field. gz-skills main
+may contain setup behavior absent from v0.5.0; inspect that version's profile
+contract and retain an explicit user profile choice. Proposals are not shipped
+capabilities just because they appear on main.
+
+To adopt newer versions in the shared starter:
+
+1. Change each selected component's release, revision and accurate status in
+   `bundle.json`. Keep SP-BP disabled. Updating SP or gz-skills does not depend on
+   Backplane's old compatibility baseline while Backplane is deferred.
+2. Change the corresponding full SHA in both native catalogs:
+   `.agents/plugins/marketplace.json` and `.claude-plugin/marketplace.json`.
+   Keep upstream ownership and plugin names intact.
+3. Run the repository's tests, bundle validation and lint/format checks. Publish
+   the reviewed starter revision and record host verification separately.
+4. For a new adopter, configure from that reviewed starter checkout, then follow
+   the active host's native installation steps above. For an existing adopter,
+   review the configuration/lock/entry-skill diff as described below; the helper
+   deliberately refuses to overwrite older managed files.
+5. Use the installed host manager's supported update/reinstall operation after
+   reviewing its current help. Verify the selected marketplace source, actual
+   loaded revision and fresh-session skill discovery; a manager saying “updated”
+   or a changed lock alone does not prove that the newest selected source loaded.
+   Retain the prior pins for rollback.
+
+Do not edit cached upstream skills, duplicate their installation under a second
+marketplace, or silently update unrelated projects. To use a project-specific
+version ahead of the shared baseline, record it in a separately reviewed catalog
+and reconcile the existing discovery source explicitly. Do not leave the shared
+bundle lock claiming one revision while another is installed.
+
 ## Updates and rollback
 
 Components remain separately owned. Do not update upstream Superpowers as a

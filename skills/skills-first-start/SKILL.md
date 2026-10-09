@@ -36,3 +36,7 @@ issue automation or replace project backlog authority with local starter code.
 No gz-skills lite/heavy profile is inferred here. Upstream main proposals are
 not capabilities in the pinned release. Keep upstream sources independently
 versioned, and never install their skills through duplicate discovery paths.
+
+For current SP/gz-skills releases or development snapshots, follow the reviewed
+starter's `docs/adoption.md` update procedure. Query upstream before saying
+“latest”; preserve exact source pins and verify actual loading after an update.
