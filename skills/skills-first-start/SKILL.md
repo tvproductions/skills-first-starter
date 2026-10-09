@@ -10,13 +10,19 @@ actual task and available skills; recommend the smallest useful workflow and the
 continue the authorized task. This skill is orientation, not another lifecycle.
 Do not invoke every audit or reinterpret a small task as an architecture project.
 
-| Need | Route after confirming discovery |
-| --- | --- |
-| Run an application operation | Project-owned operational skill and supporting code |
-| Design or implement a feature | Installed Superpowers `using-superpowers` entry and its task workflow |
-| Select an engineering discipline | Installed gz-skills `gzs-router` |
-| Adopt the bundle or translate existing structure | Starter `adopt-skills-stack` and `docs/backport.md` |
-| Backlog or handoff continuity | Existing project practice; SP-BP is deferred |
+For application operations, follow the project's own operational skills. For
+engineering skill selection, prefer the discovered gz-skills `gzs-router` and
+its maintained catalog; do not recreate that catalog here. For feature design
+and implementation, use the installed SP `using-superpowers` entry and its
+workflow. For adoption or structural backporting, read the starter's
+`adopt-skills-stack` skill and `docs/backport.md` from a reviewed checkout.
+Backlog and handoff continuity stay with existing project practice while SP-BP
+is deferred.
+
+This is a bootstrap pointer. Broader cross-stack routing in `gzs-router` is a
+future upstream integration; do not claim that the pinned router orchestrates
+SP or starter adoption. Once that routing is shipped and verified, simplify
+this pointer further rather than maintaining a parallel engineering catalog.
 
 Check actual skill discovery before claiming an entry is available. A pinned
 catalog or configuration is not an installed skill. If the target skill is

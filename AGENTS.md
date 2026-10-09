@@ -1,5 +1,10 @@
 # Skills-first starter
 
+For adoption into another project, start at
+`skills/adopt-skills-stack/SKILL.md` and preserve that project's instructions.
+For continuation of starter development, read
+`docs/handoffs/2026-10-09-starter-continuation.md`; recheck live state before work.
+
 This repository owns the bundle catalog, adoption helper, native marketplace
 adapters, and guidance. Read README.md and docs/architecture.md before changes.
 This is a public scaffold; use invented fixtures and preserve upstream ownership.

@@ -17,6 +17,27 @@ For current SP and gz-skills versions, follow
 [checking and adopting upstream updates](docs/adoption.md#getting-current-sp-and-gz-skills).
 The bundled pins are a reproducible baseline, not a promise to track latest.
 
+## Agent: start here
+
+Read the target project's `AGENTS.md` and linked authorities, then read
+[the adoption skill](skills/adopt-skills-stack/SKILL.md). Identify which path the
+user requested before changing files:
+
+| User's goal | Entry |
+| --- | --- |
+| Adopt into an existing project | Inventory installed sources, preview configuration, preserve existing authorities |
+| Backport a preferred structure | [Structure mapping guide](docs/backport.md); make useful changes incrementally |
+| Start a new project | [Use this template](https://github.com/tvproductions/skills-first-starter/generate), then adapt the copied starter material to the product |
+| Use an already adopted project | Project operational skills first; `gzs-router` for engineering skill selection; SP for feature design and implementation |
+
+`skills-first-start` is a small bootstrap pointer, not a competing engineering
+catalog. Prefer the discovered `gzs-router` for gz-skills selection. Broader
+cross-stack routing in gz-skills is a future upstream change, not an implemented
+capability of the pinned release.
+
+For starter development or a fresh-chat continuation, read
+[the current handoff](docs/handoffs/2026-10-09-starter-continuation.md).
+
 ## Quick start: an existing or empty project
 
 Requires Python 3.11+, Git, and Codex with plugin support. GitHub CLI is useful
