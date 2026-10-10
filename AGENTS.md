@@ -1,4 +1,4 @@
-# Skills-first starter
+# GZ skills-first starter
 
 For adoption into another project, start at
 `skills/adopt-skills-stack/SKILL.md` and preserve that project's instructions.

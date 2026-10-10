@@ -129,3 +129,8 @@ Neither issue implies gzkit implemented starter's checker or changed support.
 4. Verify the other selected hygiene tools on invented Python 3.14 fixtures.
 5. Review broader gz-skills routing and new-project skeleton improvements only
    when authorized. Keep upstream preferences portable and SP-BP deferred.
+
+
+## Repository rename — October 10, 2026
+
+The operator renamed the public GitHub template to tvproductions/gz-skills-first-starter. Canonical URL: https://github.com/tvproductions/gz-skills-first-starter. Existing local development checkout remains /Users/jbabb/Documents/Devel/skills-first-starter; the Git origin is updated to the new URL. The skills-first-starter marketplace identifier, Python project name and adoption identities remain unchanged for compatibility. SP-BP remains expected and deferred; no upstream pins or installation behavior changed.

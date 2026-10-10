@@ -1,4 +1,4 @@
-# Skills-first starter
+# GZ skills-first starter
 
 A reusable, project-scoped starting point for **Superpowers + gz-skills**,
 with room for each application's own operational skills and supporting code. Built for work and personal projects under `tvproductions`.
@@ -28,7 +28,7 @@ user requested before changing files:
 | --- | --- |
 | Adopt into an existing project | Inventory installed sources, preview configuration, preserve existing authorities |
 | Backport a preferred structure | [Structure mapping guide](docs/backport.md); make useful changes incrementally |
-| Start a new project | [Use this template](https://github.com/tvproductions/skills-first-starter/generate), then adapt the copied starter material to the product |
+| Start a new project | [Use this template](https://github.com/tvproductions/gz-skills-first-starter/generate), then adapt the copied starter material to the product |
 | Use an already adopted project | Project operational skills first; `gzs-router` for engineering skill selection; SP for feature design and implementation |
 
 `skills-first-start` is a small bootstrap pointer, not a competing engineering
@@ -45,8 +45,8 @@ Requires uv, Python 3.14, Git, and Codex with plugin support. GitHub CLI is usef
 for checking upstream releases; Backplane's GitHub workflows remain deferred. No Python dependencies are needed for this tool.
 
 ```bash
-gh repo clone tvproductions/skills-first-starter
-cd skills-first-starter
+gh repo clone tvproductions/gz-skills-first-starter
+cd gz-skills-first-starter
 uv run --python 3.14 starter.py validate
 uv run --python 3.14 starter.py configure --project /path/to/your-project
 uv run --python 3.14 starter.py configure --project /path/to/your-project --apply
@@ -71,7 +71,7 @@ uv run --python 3.14 starter.py status --project /path/to/your-project
 ```
 
 For agent-guided adoption, read [the adoption skill](skills/adopt-skills-stack/SKILL.md).
-You can also [use this repository as a GitHub template](https://github.com/tvproductions/skills-first-starter/generate),
+You can also [use this repository as a GitHub template](https://github.com/tvproductions/gz-skills-first-starter/generate),
 then configure your new checkout from a separate, reviewed starter checkout.
 A generated repository inherits the starter files; simplify it for your product
 rather than turning this scaffolding into runtime dependencies. Running the copied

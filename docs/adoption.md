@@ -2,7 +2,7 @@
 
 ## Establish the project boundary
 
-Use a separate reviewed checkout of `tvproductions/skills-first-starter`. Record
+Use a separate reviewed checkout of `tvproductions/gz-skills-first-starter`. Record
 its full published commit SHA and review `bundle.json`. The configure helper
 uses that checkout's HEAD unless `--starter-ref <full-SHA>` is supplied. Supplying
 a SHA records your selection; the helper does not prove it is published. Verify
@@ -10,7 +10,7 @@ it before applying:
 
 ```bash
 git rev-parse HEAD
-gh api repos/tvproductions/skills-first-starter/commits/FULL_STARTER_SHA --jq .sha
+gh api repos/tvproductions/gz-skills-first-starter/commits/FULL_STARTER_SHA --jq .sha
 ```
 
 Review existing `AGENTS.md`, skill discovery surfaces, plugin configuration,
@@ -90,7 +90,7 @@ sources. From the adopting project, inspect the current manager and existing
 installations first. Then use Claude's project scope:
 
 ```text
-/plugin marketplace add tvproductions/skills-first-starter
+/plugin marketplace add tvproductions/gz-skills-first-starter
 /plugin install superpowers@skills-first-starter --scope project
 /plugin install gz-skills@skills-first-starter --scope project
 ```

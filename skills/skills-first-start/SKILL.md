@@ -34,7 +34,7 @@ missing, identify the gap and use its reviewed source instructions when useful;
 do not silently install it. The starter's own adoption skill can be read from a
 reviewed checkout when it is not exposed through native discovery.
 
-The maintained guidance lives at https://github.com/tvproductions/skills-first-starter.
+The maintained guidance lives at https://github.com/tvproductions/gz-skills-first-starter.
 Use the revision recorded in `.skills-first/bundle.lock.json` when present.
 From that reviewed checkout, `uv run --python 3.14 starter.py backport --project <root>` gives
 a read-only starting assessment. Build a source-to-target mapping before changes;

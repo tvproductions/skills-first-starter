@@ -1,6 +1,6 @@
 ---
 name: adopt-skills-stack
-description: Configure or assess a project's Superpowers, Superpowers Backplane, and gz-skills bundle from a reviewed skills-first-starter checkout, preserving existing project authorities and installations.
+description: Configure or assess a project's Superpowers, Superpowers Backplane, and gz-skills bundle from a reviewed gz-skills-first-starter checkout, preserving existing project authorities and installations.
 ---
 
 # Adopt the skills stack

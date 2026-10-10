@@ -15,5 +15,5 @@ sources and avoid duplicate plugin/copied-skill discovery.
 
 No lite/heavy profile or gzkit lifecycle is selected by the starter. For adoption,
 structural backporting, updates and verification, use the reviewed starter at
-https://github.com/tvproductions/skills-first-starter. Existing project instructions
+https://github.com/tvproductions/gz-skills-first-starter. Existing project instructions
 and app architecture are preserved until specific changes are authorized.
