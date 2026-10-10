@@ -172,6 +172,13 @@ class AdoptionTests(unittest.TestCase):
             {p["name"]: p["source"]["ref"] for p in catalog["plugins"]},
             {p["name"]: p["revision"] for p in starter.bundle()["components"]},
         )
+        claude = json.loads((MODULE.parent / ".claude-plugin/marketplace.json").read_text())
+        for plugin in claude["plugins"]:
+            self.assertNotIn("ref", plugin["source"])
+        self.assertEqual(
+            {p["name"]: p["source"]["sha"] for p in claude["plugins"]},
+            {p["name"]: p["revision"] for p in starter.bundle()["components"]},
+        )
 
     def test_moving_starter_ref_is_rejected(self):
         with self.assertRaises(starter.AdoptionError):

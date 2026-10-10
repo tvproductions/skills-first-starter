@@ -50,7 +50,8 @@ def validate_bundle() -> None:
     if actual != expected or codex["name"] != MARKETPLACE:
         raise AdoptionError("Codex marketplace does not match bundle pins")
     claude = json.loads((HERE / ".claude-plugin/marketplace.json").read_text())
-    actual = {p["name"]: (p["source"]["url"], p["source"]["ref"]) for p in claude["plugins"]}
+    # Claude Code reads "ref" as a branch or tag; a commit pin must use "sha".
+    actual = {p["name"]: (p["source"]["url"], p["source"].get("sha")) for p in claude["plugins"]}
     if actual != expected or claude["name"] != MARKETPLACE:
         raise AdoptionError("Claude marketplace does not match bundle pins")
 
@@ -337,6 +338,10 @@ def source_revision() -> str:
         ORIGIN.removesuffix(".git"),
         "git@github.com:tvproductions/skills-first-starter.git",
         "git@github.com:tvproductions/skills-first-starter",
+        "https://github.com/tvproductions/gz-skills-first-starter.git",
+        "https://github.com/tvproductions/gz-skills-first-starter",
+        "git@github.com:tvproductions/gz-skills-first-starter.git",
+        "git@github.com:tvproductions/gz-skills-first-starter",
     ):
         raise AdoptionError("this is an adopting repo; supply the published starter --starter-ref")
     if git("status", "--porcelain"):

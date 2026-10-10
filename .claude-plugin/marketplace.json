@@ -10,7 +10,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/obra/superpowers.git",
-        "ref": "5bf4e78011075bcfc0dc295f0724994cd123ee71"
+        "sha": "5bf4e78011075bcfc0dc295f0724994cd123ee71"
       },
       "description": "released; Backplane compatibility baseline"
     },
@@ -19,7 +19,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/tvproductions/superpowers-backplane.git",
-        "ref": "d0eeee829c491da02351e793544aa16ad96461bf"
+        "sha": "d0eeee829c491da02351e793544aa16ad96461bf"
       },
       "description": "pre-release; published commit, host acceptance incomplete"
     },
@@ -28,7 +28,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/tvproductions/gz-skills.git",
-        "ref": "5c3b327fc238a740062d366f03a4b443ab28834f"
+        "sha": "5c3b327fc238a740062d366f03a4b443ab28834f"
       },
       "description": "released"
     }
